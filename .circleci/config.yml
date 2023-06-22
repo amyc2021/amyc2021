@@ -1,17 +1,24 @@
+# CircleCI configuration file
 version: 2.1
 
 jobs:
-  build:
+  # Job one with a unique name
+  say_hello:
     docker:
-      - image: circleci/ruby:2.7.2-node-browsers
+     - image: cimg/base:2022.05
     steps:
-      - checkout
-      # Replace "<YOUR_TEST_COMMAND>" with the command to run your Selenium tests.
-      - run: bundle exec rspec spec/test_spec.rb
+      - run: echo "Say hello to YAML!"
+  # Job two with a unique name
+  say_goodbye:
+    docker:
+     - image: cimg/base:2022.05
+    steps:
+      - run: echo "Say goodbye to YAML!"
 
 workflows:
-  version: 2
-  build:
+  # Name of workflow
+  hello_and_goodbye:
+    # List of jobs that will run
     jobs:
-      - build
-
+      - say_hello
+      - say_goodbye
