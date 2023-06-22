@@ -1,0 +1,17 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.7.2-node-browsers
+    steps:
+      - checkout
+      # Replace "<YOUR_TEST_COMMAND>" with the command to run your Selenium tests.
+      - run: bundle exec rspec spec/test_spec.rb
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+
